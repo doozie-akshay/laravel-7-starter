@@ -74,8 +74,6 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $fetchUser = Socialite::driver('google')->user();
-
-        // echo json_encode($fetchUser->email);
         if (isset($fetchUser->email)) {
             $user = User::where('email', $fetchUser->email)->first();
             if ($user) {
@@ -98,7 +96,5 @@ class LoginController extends Controller
             return redirect(route('login'));
         }
         return redirect()->route('home');
-
     }
-
 }
